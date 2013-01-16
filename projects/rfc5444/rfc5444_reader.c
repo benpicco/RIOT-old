@@ -45,8 +45,8 @@
 #include "sys/common/avl.h"
 #include "sys/common/avl_comp.h"
 #include "sys/common/common_types.h"
-#include "rfc5444/rfc5444_reader.h"
-#include "rfc5444/rfc5444_api_config.h"
+#include "rfc5444_reader.h"
+#include "rfc5444_api_config.h"
 
 #if DISALLOW_CONSUMER_CONTEXT_DROP == true
 #define RFC5444_CONSUMER_DROP_ONLY(value, def) (def)

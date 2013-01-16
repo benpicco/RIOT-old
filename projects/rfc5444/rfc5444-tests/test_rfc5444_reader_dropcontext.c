@@ -41,13 +41,13 @@
 #include <assert.h>
 #include <stdio.h>
 
-#include "rfc5444/rfc5444_reader.h"
-#include "rfc5444/rfc5444_api_config.h"
+#include "rfc5444_reader.h"
+#include "rfc5444_api_config.h"
 
 #define PRINT_CB 1
 
 #if DISALLOW_CONSUMER_CONTEXT_DROP == 0
-#include "cunit/cunit.h"
+#include "cunit.h"
 
 /*
  * consumer definition 1

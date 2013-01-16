@@ -42,7 +42,7 @@
 #define RFC5444_CONTEXT_H_
 
 #include "sys/common/common_types.h"
-#include "rfc5444/rfc5444_api_config.h"
+#include "rfc5444_api_config.h"
 
 /*
  * Return values for reader callbacks and API calls (and internal functions)

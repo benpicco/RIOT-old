@@ -37,7 +37,7 @@
  * the copyright holders.
  */
 #include "sys/common/common_types.h"
-#include "rfc5444/rfc5444_conversion.h"
+#include "rfc5444_conversion.h"
 #include "cunit.h"
 
 static const uint32_t _timetlv_table[256] = {

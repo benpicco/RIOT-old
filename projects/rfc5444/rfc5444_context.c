@@ -38,7 +38,7 @@
  * the copyright holders.
  *
  */
-#include <rfc5444/rfc5444_context.h>
+#include <rfc5444_context.h>
 
 static const char *_rfc5444_positive_result_texts[] = {
   [RFC5444_OKAY]                 = "Okay",

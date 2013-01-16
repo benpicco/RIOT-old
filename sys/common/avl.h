@@ -308,7 +308,7 @@ avl_delete(struct avl_tree *tree, struct avl_node *node) {
  *    (automatically converted to type 'element')
  */
 #define avl_next_element(element, node_member) \
-  container_of((&(element)->node_member.list)->next, typeof(*(element)), node_member)
+  container_of((&(element)->node_member.list)->next, typeof(*(element)), node_member.list)
 
 /**
  * @param tree pointer to avl-tree
@@ -334,7 +334,7 @@ avl_delete(struct avl_tree *tree, struct avl_node *node) {
  *    (automatically converted to type 'element')
  */
 #define avl_prev_element(element, node_member) \
-  container_of((&(element)->node_member.list)->prev, typeof(*(element)), node_member)
+  container_of((&(element)->node_member.list)->prev, typeof(*(element)), node_member.list)
 
 /**
  * @param tree pointer to avl-tree

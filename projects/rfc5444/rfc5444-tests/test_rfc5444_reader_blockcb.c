@@ -42,8 +42,8 @@
 #include <stdio.h>
 
 #include "sys/common/common_types.h"
-#include "rfc5444/rfc5444_reader.h"
-#include "cunit/cunit.h"
+#include "rfc5444_reader.h"
+#include "cunit.h"
 
 /*
  * consumer definition 1

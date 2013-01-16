@@ -42,9 +42,9 @@
 #include <string.h>
 #include <stdio.h>
 
-#include "rfc5444/rfc5444_context.h"
-#include "rfc5444/rfc5444_writer.h"
-#include "cunit/cunit.h"
+#include "rfc5444_context.h"
+#include "rfc5444_writer.h"
+#include "cunit.h"
 
 static void write_packet(struct rfc5444_writer *,
     struct rfc5444_writer_interface *,void *, size_t);

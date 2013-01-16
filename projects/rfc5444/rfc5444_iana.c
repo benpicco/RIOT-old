@@ -41,7 +41,7 @@
 #include "sys/common/common_types.h"
 #include "sys/common/netaddr.h"
 
-#include "rfc5444/rfc5444_iana.h"
+#include "rfc5444_iana.h"
 
 const struct netaddr RFC5444_MANET_MULTICAST_V4 = {
   ._addr = { 224,0,0,109, 0,0,0,0,0,0,0,0,0,0,0,0 },

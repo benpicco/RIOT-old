@@ -6,7 +6,7 @@ Module test_common_netaddr : test_common_netaddr.c : cunit common ;
 Module test_common_regex : test_common_regex.c : cunit common ;
 Module test_common_string : test_common_string.c : cunit common ;
 
-UseModule test_common_avl ;
+# UseModule test_common_avl ;
 # UseModule test_common_list ;
-# UseModule test_common_netaddr ;
+UseModule test_common_netaddr ;
 # UseModule test_common_string ;

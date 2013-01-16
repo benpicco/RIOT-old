@@ -42,9 +42,9 @@
 #include <string.h>
 
 #include "sys/common/common_types.h"
-#include "rfc5444/rfc5444_tlv_writer.h"
-#include "rfc5444/rfc5444_context.h"
-#include "rfc5444/rfc5444_api_config.h"
+#include "rfc5444_tlv_writer.h"
+#include "rfc5444_context.h"
+#include "rfc5444_api_config.h"
 
 static size_t _calc_tlv_size(bool exttype, size_t length);
 static void _write_tlv(uint8_t *ptr, uint8_t type, uint8_t exttype,

@@ -43,8 +43,8 @@
 
 #include "sys/common/common_types.h"
 #include "sys/common/list.h"
-#include "rfc5444/rfc5444_writer.h"
-#include "rfc5444/rfc5444_api_config.h"
+#include "rfc5444_writer.h"
+#include "rfc5444_api_config.h"
 
 static void _write_pktheader(struct rfc5444_writer_interface *interf);
 

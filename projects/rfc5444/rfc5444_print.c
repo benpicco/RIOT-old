@@ -46,8 +46,8 @@
 
 #include "sys/net/net_help/inet_ntop.c"
 
-#include "rfc5444/rfc5444_reader.h"
-#include "rfc5444/rfc5444_print.h"
+#include "rfc5444_reader.h"
+#include "rfc5444_print.h"
 
 static void _print_hexline(struct autobuf *out, void *buffer, size_t length);
 

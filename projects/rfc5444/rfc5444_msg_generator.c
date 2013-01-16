@@ -43,8 +43,8 @@
 #include <string.h>
 
 #include "sys/common/common_types.h"
-#include "rfc5444/rfc5444_writer.h"
-#include "rfc5444/rfc5444_api_config.h"
+#include "rfc5444_writer.h"
+#include "rfc5444_api_config.h"
 
 /* data necessary for automatic address compression */
 struct _rfc5444_internal_addr_compress_session {

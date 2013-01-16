@@ -44,10 +44,10 @@
 #include "sys/common/common_types.h"
 #include "sys/common/avl.h"
 #include "sys/common/avl_comp.h"
-#include "rfc5444/rfc5444_reader.h"
+#include "rfc5444_reader.h"
 #include "test_rfc5444_interop.h"
 
-#include "cunit/cunit.h"
+#include "cunit.h"
 
 static enum rfc5444_result _pkt_start_callback(
     struct rfc5444_reader_tlvblock_consumer *,
