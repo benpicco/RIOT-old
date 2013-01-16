@@ -49,3 +49,4 @@ SubInclude TOP sys net sixlowpan ;
 SubInclude TOP sys net sixlowpan rpl ;
 SubInclude TOP sys net destiny ;
 SubInclude TOP sys net net_help ;
+SubInclude TOP sys common ;

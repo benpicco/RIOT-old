@@ -42,8 +42,8 @@
 #ifndef TEMPLATE_H_
 #define TEMPLATE_H_
 
-#include "common/common_types.h"
-#include "common/autobuf.h"
+#include "common_types.h"
+#include "autobuf.h"
 
 #define JSON_TRUE            "true"
 #define JSON_FALSE           "false"

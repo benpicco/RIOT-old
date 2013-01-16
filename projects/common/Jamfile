@@ -1,5 +1,0 @@
-SubDir TOP projects common ;
-
-Module common : cunit.c main.c autobuf.c avl.c avl_comp.c daemonize.c netaddr.c string_common.c template.c : config cc110x_ng destiny net_help ;
-
-UseModule common ;

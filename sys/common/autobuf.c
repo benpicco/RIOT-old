@@ -51,7 +51,7 @@
 #include <winsock2.h>
 #endif
 
-#include "common/autobuf.h"
+#include "autobuf.h"
 
 static size_t AUTOBUFCHUNK = 0;
 

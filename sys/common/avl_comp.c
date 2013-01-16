@@ -42,8 +42,8 @@
 #include <string.h>
 #include <strings.h>
 
-#include "common/avl_comp.h"
-#include "common/string_common.h"
+#include "avl_comp.h"
+#include "string_common.h"
 
 /**
  * AVL tree comparator for unsigned 32 bit integers

@@ -43,9 +43,9 @@
 #include <time.h>
 #include <string.h>
 
-#include "common/common_types.h"
-#include "common/list.h"
-#include "common/avl.h"
+#include "common_types.h"
+#include "list.h"
+#include "avl.h"
 
 static struct avl_node *_avl_find_rec(struct avl_node *node,
     const void *key, avl_tree_comp comp, void *ptr, int *cmp_result);

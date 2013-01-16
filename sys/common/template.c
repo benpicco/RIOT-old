@@ -42,10 +42,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "common/common_types.h"
-#include "common/autobuf.h"
-#include "common/string_common.h"
-#include "common/template.h"
+#include "common_types.h"
+#include "autobuf.h"
+#include "string_common.h"
+#include "template.h"
 
 static struct abuf_template_data *_find_template(
     struct abuf_template_data *data, size_t tmplLength, const char *txt, size_t txtLength);

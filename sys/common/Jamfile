@@ -1,0 +1,3 @@
+SubDir TOP sys common ;
+
+Module common : autobuf.c avl.c avl_comp.c netaddr.c string_common.c template.c ;

@@ -76,8 +76,8 @@ typedef int socklen_t;
 #include <assert.h>
 #include <string.h>
 
-#include "common/common_types.h"
-#include "common/autobuf.h"
+#include "common_types.h"
+#include "autobuf.h"
 
 enum {
   AF_MAC48 = AF_MAX + 1,

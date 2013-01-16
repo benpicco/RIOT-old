@@ -43,7 +43,7 @@
 #define CONTAINER_OF_H_
 
 #include <stddef.h>
-#include "common/common_types.h"
+#include "common_types.h"
 
 /* allow compilation with c99 mode */
 #ifndef typeof

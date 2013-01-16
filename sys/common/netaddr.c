@@ -46,9 +46,9 @@
 // #include <net/if.h>
 #include "sys/net/net_help/net_help.h"
 
-#include "common/common_types.h"
-#include "common/string_common.h"
-#include "common/netaddr.h"
+#include "common_types.h"
+#include "string_common.h"
+#include "netaddr.h"
 
 #include "sys/net/net_help/inet_pton.c"
 #include "sys/net/net_help/inet_ntop.c"

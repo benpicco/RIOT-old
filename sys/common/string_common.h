@@ -47,7 +47,7 @@
 #include <strings.h>
 #include <ctype.h>
 
-#include "common/common_types.h"
+#include "common_types.h"
 
 enum { STRARRAY_BLOCKSIZE = 64 };
 

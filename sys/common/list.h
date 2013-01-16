@@ -44,8 +44,8 @@
 
 #include <stddef.h>
 
-#include "common/container_of.h"
-#include "common/common_types.h"
+#include "container_of.h"
+#include "common_types.h"
 
 /**
  * this struct is used as list head and list elements.

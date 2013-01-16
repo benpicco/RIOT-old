@@ -44,7 +44,7 @@
 #include <string.h>
 #include <stdio.h>
 
-#include "common/string_common.h"
+#include "string_common.h"
 
 /**
  * @param size minimum size of block
