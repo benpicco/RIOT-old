@@ -40,6 +40,8 @@ Module uart0 : uart0.c : ringbuffer chardev_thread ;
 
 Module transceiver : transceiver.c ;
 
+Module cunit : cunit.c ;
+
 SubInclude TOP sys net ;
 SubInclude TOP sys lib ;
 SubInclude TOP sys shell ;
