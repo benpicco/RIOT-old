@@ -57,7 +57,8 @@
 
 typedef unsigned int sa_family_t;
 typedef int socklen_t;
-#define INET6_ADDRSTRLEN        (48)
+#define INET_ADDRSTRLEN		(16)
+#define INET6_ADDRSTRLEN	(48)
 
 #else
 #ifndef _WIN32

@@ -1,7 +1,5 @@
 SubDir TOP projects common-tests ;
 
-# Module common : cunit.c main.c autobuf.c avl.c avl_comp.c daemonize.c netaddr.c string_common.c template.c : config cc110x_ng destiny net_help ;
-
 Module test_common_avl : test_common_avl.c : cunit common ;
 Module test_common_list : test_common_list.c : cunit common ;
 Module test_common_netaddr : test_common_netaddr.c : cunit common ;

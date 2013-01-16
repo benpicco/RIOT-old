@@ -42,7 +42,7 @@
 #include <stdio.h>
 #include <stdarg.h>
 
-#include <cunit.h>
+#include "cunit.h"
 
 static int success, fail, total_success, total_fail;
 static void (*clear_elements)(void);
@@ -80,7 +80,7 @@ cunit_end_test(const char *func) {
 }
 
 void
-cunit_named_check(bool cond, const char *name, const char *format, ...) {
+cunit_named_check(bool cond, const char *name, int line, const char *format, ...) {
   va_list ap;
 
   if (cond) {
@@ -92,7 +92,7 @@ cunit_named_check(bool cond, const char *name, const char *format, ...) {
 
   va_start(ap, format);
 
-  printf("\t%s fail: ", name);
+  printf("\t%s (%d) fail: ", name, line);
   vprintf(format, ap);
   puts("\n");
   va_end(ap);
