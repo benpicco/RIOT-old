@@ -123,6 +123,7 @@ enum {
   MAC48_PREFIXSTRLEN = MAC48_ADDRSTRLEN + 3,
   EUI64_ADDRSTRLEN = 24,
   EUI64_PREFIXSTRLEN = EUI64_ADDRSTRLEN + 3,
+  INET_PREFIXSTRLEN = INET_ADDRSTRLEN + 3,
   INET6_PREFIXSTRLEN = INET6_ADDRSTRLEN + 4,
 };
 
@@ -141,6 +142,7 @@ EXPORT extern const struct netaddr NETADDR_IPV6_MULTICAST;
 EXPORT extern const struct netaddr NETADDR_IPV4_LINKLOCAL;
 EXPORT extern const struct netaddr NETADDR_IPV6_LINKLOCAL;
 EXPORT extern const struct netaddr NETADDR_IPV6_ULA;
+EXPORT extern const struct netaddr NETADDR_IPV6_IPV4EMBEDDED;
 
 EXPORT int netaddr_from_binary_prefix(struct netaddr *dst,
     const void *binary, size_t len, uint8_t addr_type, uint8_t prefix_len);
@@ -170,6 +172,11 @@ EXPORT uint8_t netaddr_get_af_maxprefix(const uint32_t);
 
 EXPORT int netaddr_avlcmp(const void *, const void *, void *);
 EXPORT int netaddr_socket_avlcmp(const void *, const void *, void *);
+
+#ifdef WIN32
+EXPORT const char *inet_ntop(int af, const void* src, char* dst, int cnt);
+EXPORT int inet_pton(int af, const char *cp, void * buf);
+#endif
 
 /**
  * Sets the address type of a netaddr object to AF_UNSPEC
@@ -218,11 +225,38 @@ netaddr_create_host(struct netaddr *host, const struct netaddr *netmask,
 }
 
 /**
+ * Embed an IPv4 address into an IPv6 address
+ * @param dst target IPv6 address
+ * @param src source IPv4 address
+ */
+static INLINE void
+netaddr_embed_ipv4(struct netaddr *dst, const struct netaddr *src) {
+  memcpy(&dst->_addr[0], &NETADDR_IPV6_IPV4EMBEDDED._addr[0], 12);
+  memcpy(&dst->_addr[12], &src->_addr[0], 4);
+  dst->_type = AF_INET6;
+  dst->_prefix_len = 128;
+}
+
+/**
+ *
+ * @param dst
+ * @param src
+ */
+static INLINE void
+netaddr_extract_ipv4(struct netaddr *dst, const struct netaddr *src) {
+  memcpy(&dst->_addr[0], &src->_addr[12], 4);
+  memset(&dst->_addr[4], 0, 12);
+  dst->_type = AF_INET;
+  dst->_prefix_len = 32;
+}
+
+/**
  * Read the binary representation of an address into a netaddr object
  * @param dst pointer to netaddr object
  * @param binary source pointer
  * @param len length of source buffer
- * @param addr_type address type of source
+ * @param addr_type address type of source,
+ *   0 for autodetection based on length
  * @return 0 if successful read binary data, -1 otherwise
  */
 static INLINE int
