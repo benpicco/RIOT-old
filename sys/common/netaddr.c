@@ -169,6 +169,7 @@ netaddr_from_socket(struct netaddr *dst, const union netaddr_socket *src) {
   }
   else {
     /* unknown address type */
+    printf("unknown address type (%s)\n", __func__);
     dst->_type = AF_UNSPEC;
     return -1;
   }
@@ -195,6 +196,7 @@ netaddr_to_socket(union netaddr_socket *dst, const struct netaddr *src) {
       break;
     default:
       /* unknown address type */
+      printf("unknown address type (%s)\n", __func__);
       return -1;
   }
 
@@ -302,6 +304,7 @@ netaddr_socket_init(union netaddr_socket *combined, const struct netaddr *addr,
 //      combined->v6.sin6_scope_id = if_index;
       break;
     default:
+      printf("unknown address type (%s)\n", __func__);
       /* unknown address type */
       return -1;
   }
@@ -321,6 +324,7 @@ netaddr_socket_get_port(const union netaddr_socket *sock) {
     case AF_INET6:
       return NTOHS(sock->v6.sin6_port);
     default:
+      printf("unknown address type (%s)\n", __func__);
       return 0;
   }
 }
@@ -579,7 +583,8 @@ netaddr_cmp_to_socket(const struct netaddr *a1, const union netaddr_socket *a2) 
   if (a1->_type == AF_INET6) {
     /* ipv6 */
     result = memcmp(a1->_addr, &a2->v6.sin6_addr, 16);
-  }
+  } else
+     printf("unknown address type (%s)\n", __func__);
 
   if (result) {
     return result;
