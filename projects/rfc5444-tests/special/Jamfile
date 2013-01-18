@@ -1,0 +1,5 @@
+SubDir TOP projects rfc5444-tests special ;
+
+Module special : test_nhdp_1.c : cunit rfc5444 ;
+
+UseModule special ;

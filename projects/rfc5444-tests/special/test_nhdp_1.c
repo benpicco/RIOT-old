@@ -42,11 +42,11 @@
 #include <string.h>
 #include <stdio.h>
 
-#include "common/autobuf.h"
-#include "sys/net/rfc5444/rfc5444/rfc5444_context.h"
-#include "sys/net/rfc5444/rfc5444/rfc5444_print.h"
-#include "sys/net/rfc5444/rfc5444/rfc5444_writer.h"
-#include "cunit/cunit.h"
+#include "sys/common/autobuf.h"
+#include "sys/net/rfc5444/rfc5444_context.h"
+#include "sys/net/rfc5444/rfc5444_print.h"
+#include "sys/net/rfc5444/rfc5444_writer.h"
+#include "cunit.h"
 
 uint8_t result[] = {
     0x00, 0x01, 0x03, 0x00, 0x28, 0x00, 0x00, 0x04,
