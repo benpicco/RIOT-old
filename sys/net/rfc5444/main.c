@@ -2,5 +2,5 @@
 // #include "rfc5444-tests/test_rfc5444_reader_blockcb.c"
 // #include "rfc5444-tests/test_rfc5444_reader_dropcontext.c"
 // #include "rfc5444-tests/test_rfc5444_writer_fragmentation.c"
-// #include "rfc5444-tests/test_rfc5444_writer_ifspecific.c"
-#include "rfc5444-tests/test_rfc5444_writer_mandatory.c"
+#include "rfc5444-tests/test_rfc5444_writer_ifspecific.c"
+// #include "rfc5444-tests/test_rfc5444_writer_mandatory.c"

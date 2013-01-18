@@ -44,7 +44,7 @@
 #include "sys/common/common_types.h"
 #include "sys/common/avl.h"
 #include "sys/common/avl_comp.h"
-#include "rfc5444_reader.h"
+#include "sys/net/rfc5444/rfc5444_reader.h"
 #include "test_rfc5444_interop.h"
 
 #include "cunit.h"

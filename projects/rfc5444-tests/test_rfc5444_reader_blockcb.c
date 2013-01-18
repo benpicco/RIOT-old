@@ -42,7 +42,7 @@
 #include <stdio.h>
 
 #include "sys/common/common_types.h"
-#include "rfc5444_reader.h"
+#include "sys/net/rfc5444/rfc5444_reader.h"
 #include "cunit.h"
 
 /*

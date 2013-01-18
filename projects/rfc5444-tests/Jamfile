@@ -1,0 +1,15 @@
+SubDir TOP projects rfc5444-tests ;
+
+Module test_rfc5444_conversion : test_rfc5444_conversion.c : cunit rfc5444 ;
+Module test_rfc5444_reader_blockcb : test_rfc5444_reader_blockcb.c : cunit rfc5444 ;
+Module test_rfc5444_reader_dropcontext : test_rfc5444_reader_dropcontext.c : cunit rfc5444 ;
+Module test_rfc5444_writer_fragmentation : test_rfc5444_writer_fragmentation.c : cunit rfc5444 ;
+Module test_rfc5444_writer_ifspecific : test_rfc5444_writer_ifspecific.c : cunit rfc5444 ;
+Module test_rfc5444_writer_mandatory : test_rfc5444_writer_mandatory.c : cunit rfc5444 ;
+
+# UseModule test_rfc5444_conversion ;
+# UseModule test_rfc5444_reader_blockcb ;
+# UseModule test_rfc5444_reader_dropcontext ;
+# UseModule test_rfc5444_writer_fragmentation ;
+# UseModule test_rfc5444_writer_ifspecific ;
+UseModule test_rfc5444_writer_mandatory ;

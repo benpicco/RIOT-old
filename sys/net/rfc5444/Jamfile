@@ -1,0 +1,3 @@
+SubDir TOP sys net rfc5444 ;
+
+Module rfc5444 : rfc5444_context.c  rfc5444_conversion.c  rfc5444_iana.c  rfc5444_msg_generator.c  rfc5444_pkt_generator.c  rfc5444_print.c  rfc5444_reader.c  rfc5444_tlv_writer.c  rfc5444_writer.c : common net_help ;

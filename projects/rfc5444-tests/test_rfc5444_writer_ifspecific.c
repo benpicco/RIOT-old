@@ -42,16 +42,12 @@
 #include <string.h>
 #include <stdio.h>
 
-#include "rfc5444_context.h"
-#include "rfc5444_writer.h"
+#include "sys/net/rfc5444/rfc5444_context.h"
+#include "sys/net/rfc5444/rfc5444_writer.h"
 #include "cunit.h"
 
-#define MSG_TYPE 1
-
 static void write_packet(struct rfc5444_writer *,
-    struct rfc5444_writer_interface *, void *, size_t);
-static void addAddresses(struct rfc5444_writer *wr,
-    struct rfc5444_writer_content_provider *provider);
+    struct rfc5444_writer_interface *,void *, size_t);
 
 static uint8_t msg_buffer[128];
 static uint8_t msg_addrtlvs[1000];
@@ -61,15 +57,6 @@ static struct rfc5444_writer writer = {
   .msg_size = sizeof(msg_buffer),
   .addrtlv_buffer = msg_addrtlvs,
   .addrtlv_size = sizeof(msg_addrtlvs),
-};
-
-static struct rfc5444_writer_content_provider cpr = {
-  .msg_type = MSG_TYPE,
-  .addAddresses = addAddresses,
-};
-
-static struct rfc5444_writer_addrtlv_block addrtlvs[] = {
-  { .type = 3 },
 };
 
 static uint8_t packet_buffer_if1[128];
@@ -86,14 +73,12 @@ static struct rfc5444_writer_interface large_if = {
   .sendPacket = write_packet,
 };
 
-static int tlvcount, fragments, packets[2];
-
-static uint8_t tlv_value_buffer[256];
-static uint8_t *tlv_value;
-static size_t tlv_value_size;
+static int unique_messages;
 
 static void addMessageHeader(struct rfc5444_writer *wr, struct rfc5444_writer_message *msg) {
   rfc5444_writer_set_msg_header(wr, msg, false, false, false, false);
+  printf("Begin message\n");
+  unique_messages++;
 }
 
 static void finishMessageHeader(struct rfc5444_writer *wr  __attribute__ ((unused)),
@@ -101,32 +86,11 @@ static void finishMessageHeader(struct rfc5444_writer *wr  __attribute__ ((unuse
     struct rfc5444_writer_address *first_addr __attribute__ ((unused)),
     struct rfc5444_writer_address *last_addr __attribute__ ((unused)),
     bool not_fragmented __attribute__ ((unused))) {
-  fragments++;
+  printf("End message\n");
 }
 
-static void addAddresses(struct rfc5444_writer *wr,
-    struct rfc5444_writer_content_provider *provider) {
-  uint8_t ip[4] = { 10, 0, 0, 0 };
-  struct rfc5444_writer_address *addr;
-  int i;
 
-  for (i=0; i<tlvcount; i++) {
-    ip[3] = i+1;
-
-    if (tlv_value) {
-      tlv_value[tlv_value_size-1] = (uint8_t)(i & 255);
-    }
-
-    addr = rfc5444_writer_add_address(wr, provider->creator, ip, 32, i == 0);
-    rfc5444_writer_add_addrtlv(wr, addr, addrtlvs[0]._tlvtype, tlv_value, tlv_value_size, false);
-
-    if (tlv_value) {
-      tlv_value[tlv_value_size-1] = (tlv_value_size-1) & 255;
-    }
-  }
-}
-
-static void write_packet(struct rfc5444_writer *w __attribute__ ((unused)),
+static void write_packet(struct rfc5444_writer *wr __attribute__ ((unused)),
     struct rfc5444_writer_interface *iface,
     void *buffer, size_t length) {
   size_t i, j;
@@ -134,11 +98,9 @@ static void write_packet(struct rfc5444_writer *w __attribute__ ((unused)),
 
   if (iface == &small_if) {
     printf("Interface 1:\n");
-    packets[0]++;
   }
   else {
     printf("Interface 2:\n");
-    packets[1]++;
   }
 
   for (j=0; j<length; j+=32) {
@@ -153,88 +115,53 @@ static void write_packet(struct rfc5444_writer *w __attribute__ ((unused)),
 }
 
 static void clear_elements(void) {
-  fragments = 0;
-  tlv_value = NULL;
-  tlv_value_size = 0;
-  packets[0] = packets[1] = 0;
+  unique_messages = 0;
 }
 
-static void test_frag_80_1(void) {
+static void test_ip_specific(void) {
   START_TEST();
-
-  tlvcount = 1;
-  tlv_value = tlv_value_buffer;
-  tlv_value_size = 80;
 
   CHECK_TRUE(0 == rfc5444_writer_create_message_allif(&writer, 1), "Parser should return 0");
   rfc5444_writer_flush(&writer, &small_if, false);
   rfc5444_writer_flush(&writer, &large_if, false);
 
-  CHECK_TRUE(fragments == 1, "bad number of fragments: %d\n", fragments);
-  CHECK_TRUE(packets[0] == 1, "bad number of packets on if 1: %d\n", packets[0]);
-  CHECK_TRUE(packets[1] == 1, "bad number of packets on if 2: %d\n", packets[1]);
+  CHECK_TRUE(unique_messages == 2, "bad number of messages: %d\n", unique_messages);
 
   END_TEST();
 }
 
-static void test_frag_80_2(void) {
+static void test_not_ip_specific(void) {
   START_TEST();
 
-  tlvcount = 2;
-  tlv_value = tlv_value_buffer;
-  tlv_value_size = 80;
-
-  CHECK_TRUE(0 != rfc5444_writer_create_message_allif(&writer, 1), "Parser should return -1");
-
-  CHECK_TRUE(fragments == 0, "bad number of fragments: %d\n", fragments);
-  CHECK_TRUE(packets[0] == 0, "bad number of packets on if 1: %d\n", packets[0]);
-  CHECK_TRUE(packets[1] == 0, "bad number of packets on if 2: %d\n", packets[1]);
-
-  END_TEST();
-}
-
-static void test_frag_50_3(void) {
-  START_TEST();
-
-  tlvcount = 3;
-  tlv_value = tlv_value_buffer;
-  tlv_value_size = 50;
-
-  CHECK_TRUE(0 == rfc5444_writer_create_message_allif(&writer, 1), "Parser should return 0");
+  CHECK_TRUE(0 == rfc5444_writer_create_message_allif(&writer, 2), "Parser should return 0");
   rfc5444_writer_flush(&writer, &small_if, false);
   rfc5444_writer_flush(&writer, &large_if, false);
 
-  CHECK_TRUE(fragments == 2, "bad number of fragments: %d\n", fragments);
-  CHECK_TRUE(packets[0] == 2, "bad number of packets on if 1: %d\n", packets[0]);
-  CHECK_TRUE(packets[1] == 1, "bad number of packets on if 2: %d\n", packets[1]);
+  CHECK_TRUE(unique_messages == 1, "bad number of messages: %d\n", unique_messages);
 
   END_TEST();
 }
 
 int main(int argc __attribute__ ((unused)), char **argv __attribute__ ((unused))) {
-  struct rfc5444_writer_message *msg;
-  size_t i;
-
-  for (i=0; i<sizeof(tlv_value_buffer); i++) {
-    tlv_value_buffer[i] = i;
-  }
+  struct rfc5444_writer_message *msg[2];
 
   rfc5444_writer_init(&writer);
 
   rfc5444_writer_register_interface(&writer, &small_if);
   rfc5444_writer_register_interface(&writer, &large_if);
 
-  msg = rfc5444_writer_register_message(&writer, MSG_TYPE, false, 4);
-  msg->addMessageHeader = addMessageHeader;
-  msg->finishMessageHeader = finishMessageHeader;
+  msg[0] = rfc5444_writer_register_message(&writer, 1, true, 4);
+  msg[0]->addMessageHeader = addMessageHeader;
+  msg[0]->finishMessageHeader = finishMessageHeader;
 
-  rfc5444_writer_register_msgcontentprovider(&writer, &cpr, addrtlvs, ARRAYSIZE(addrtlvs));
+  msg[1] = rfc5444_writer_register_message(&writer, 2, false, 4);
+  msg[1]->addMessageHeader = addMessageHeader;
+  msg[1]->finishMessageHeader = finishMessageHeader;
 
   BEGIN_TESTING(clear_elements);
 
-  test_frag_80_1();
-  test_frag_80_2();
-  test_frag_50_3();
+  test_ip_specific();
+  test_not_ip_specific();
 
   rfc5444_writer_cleanup(&writer);
 

@@ -37,12 +37,12 @@
  * the copyright holders.
  */
 
-#include <arpa/inet.h>
+// #include <arpa/inet.h>
 #include <assert.h>
 #include <stdio.h>
 
-#include "rfc5444_reader.h"
-#include "rfc5444_api_config.h"
+#include "sys/net/rfc5444/rfc5444_reader.h"
+#include "sys/net/rfc5444/rfc5444_api_config.h"
 
 #define PRINT_CB 1
 

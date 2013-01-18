@@ -43,9 +43,9 @@
 #include <stdio.h>
 
 #include "common/autobuf.h"
-#include "rfc5444/rfc5444_context.h"
-#include "rfc5444/rfc5444_print.h"
-#include "rfc5444/rfc5444_writer.h"
+#include "sys/net/rfc5444/rfc5444/rfc5444_context.h"
+#include "sys/net/rfc5444/rfc5444/rfc5444_print.h"
+#include "sys/net/rfc5444/rfc5444/rfc5444_writer.h"
 #include "cunit/cunit.h"
 
 uint8_t result[] = {
