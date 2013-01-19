@@ -41,6 +41,9 @@
 #include <string.h>
 #include <stdio.h>
 
+#include <vtimer.h>
+#include <hwtimer.h>
+
 #include "sys/common/common_types.h"
 #include "sys/common/avl.h"
 #include "sys/common/avl_comp.h"
@@ -428,6 +431,12 @@ add_test(struct test_packet *p) {
 int
 main(int argc __attribute__((unused)), char **argv __attribute__((unused))) {
   struct test_packet *packet;
+
+  hwtimer_init();
+  vtimer_init();
+  printf("Waiting…\n");
+  vtimer_usleep(5000000);
+
   BEGIN_TESTING(NULL);
 
   rfc5444_reader_init(&reader);

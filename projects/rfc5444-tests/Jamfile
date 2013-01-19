@@ -7,8 +7,8 @@ Module test_rfc5444_writer_fragmentation : test_rfc5444_writer_fragmentation.c :
 Module test_rfc5444_writer_ifspecific : test_rfc5444_writer_ifspecific.c : cunit rfc5444 ;
 Module test_rfc5444_writer_mandatory : test_rfc5444_writer_mandatory.c : cunit rfc5444 ;
 
-SubInclude TOP projects rfc5444-tests interop2010 ;
 SubInclude TOP projects rfc5444-tests special ;
+SubInclude TOP projects rfc5444-tests interop2010 ;
 
 # UseModule test_rfc5444_conversion ;
 # UseModule test_rfc5444_reader_blockcb ;
@@ -16,5 +16,5 @@ SubInclude TOP projects rfc5444-tests special ;
 # UseModule test_rfc5444_writer_fragmentation ;
 # UseModule test_rfc5444_writer_ifspecific ;
 # UseModule test_rfc5444_writer_mandatory ;
-# UseModule interop2010 ;
-UseModule special ;
+UseModule special
+# UseModule interop2010
