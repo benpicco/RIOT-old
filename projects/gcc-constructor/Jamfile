@@ -1,0 +1,5 @@
+SubDir TOP projects gcc-constructor ;
+
+Module gcc-constructor : main.c ;
+
+UseModule gcc-constructor ;
