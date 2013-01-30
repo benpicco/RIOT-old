@@ -1,0 +1,5 @@
+SubDir TOP projects malloc_test ;
+
+Module malloc_test : main.c : hwtimer vtimer auto_init ;
+
+UseModule malloc_test ;
