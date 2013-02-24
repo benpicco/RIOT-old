@@ -3,6 +3,9 @@
  * TODO: move those functions and defines to their appropriate place in RIOT
  */
 
+#ifndef __COMPAT_MISC_H__
+#define __COMPAT_MISC_H__
+
 typedef unsigned int sa_family_t;
 typedef int socklen_t;
 
@@ -24,6 +27,8 @@ typedef int socklen_t;
 #define INET_ADDRSTRLEN		(16)
 #define INET6_ADDRSTRLEN	(48)
 
+#define random()	rand()
+
 inline int getpagesize(void) {
 	return 512;	// TODO: find appropriate pagesize
 }
@@ -38,3 +43,5 @@ inline char* if_indextoname(unsigned int ifindex, char *ifname) {
 
 	return ifname;
 }
+
+#endif
