@@ -888,7 +888,7 @@ int32_t recvfrom(int s, void *buf, uint32_t len, int flags, sockaddr6_t *from, u
 		}
 	}
 
-int32_t sendto(int s, void *msg, uint32_t len, int flags, sockaddr6_t *to, uint32_t tolen)
+int32_t sendto(int s, const void *msg, uint32_t len, int flags, sockaddr6_t *to, uint32_t tolen)
 	{
 	if (isUDPSocket(s) && (getSocket(s)->socket_values.foreign_address.sin6_port == 0))
 		{

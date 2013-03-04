@@ -195,7 +195,7 @@ int connect(int socket, sockaddr6_t *addr, uint32_t addrlen);
 socket_internal_t *getWaitingConnectionSocket(int socket, ipv6_hdr_t *ipv6_header, tcp_hdr_t *tcp_header);
 void close_socket(socket_internal_t *current_socket);
 int32_t recvfrom( int s, void *buf, uint32_t len, int flags, sockaddr6_t *from, uint32_t *fromlen );
-int32_t sendto( int s, void *msg, uint32_t len, int flags, sockaddr6_t *to, uint32_t tolen);
+int32_t sendto( int s, const void *msg, uint32_t len, int flags, sockaddr6_t *to, uint32_t tolen);
 int32_t send(int s, void *msg, uint32_t len, int flags);
 int recv(int s, void *buf, uint32_t len, int flags);
 int close(int s);
