@@ -1176,7 +1176,7 @@ int handle_new_tcp_connection(socket_internal_t *current_queued_int_socket, sock
 	return current_queued_int_socket->socket_id;
 	}
 
-int accept(int s, sockaddr6_t *addr, uint32_t addrlen)
+int accept(int s, sockaddr6_t *addr, uint32_t *addrlen)
 	{
 	socket_internal_t *server_socket = getSocket(s);
 	if (isTCPSocket(s) && (server_socket->socket_values.tcp_control.state == LISTEN))

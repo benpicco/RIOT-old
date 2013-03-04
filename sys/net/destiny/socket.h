@@ -201,7 +201,7 @@ int recv(int s, void *buf, uint32_t len, int flags);
 int close(int s);
 int bind(int s, sockaddr6_t *name, int namelen);
 int listen(int s, int backlog);
-int accept(int s, sockaddr6_t *addr, uint32_t addrlen);
+int accept(int s, sockaddr6_t *addr, uint32_t *addrlen);
 void socket_init(void);
 socket_internal_t *get_udp_socket(ipv6_hdr_t *ipv6_header, udp_hdr_t *udp_header);
 socket_internal_t *get_tcp_socket(ipv6_hdr_t *ipv6_header, tcp_hdr_t *tcp_header);
