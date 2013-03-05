@@ -44,4 +44,16 @@ inline char* if_indextoname(unsigned int ifindex, char *ifname) {
 	return ifname;
 }
 
+inline unsigned int if_nametoindex(const char *ifname) {
+	return 1; // since we don't have interfaces…
+}
+
+#include <string.h>
+#include <malloc.h>
+
+char *strdup(const char *s) {
+	char* dup = malloc(strlen(s));
+	return strcpy(dup, s);
+}
+
 #endif
